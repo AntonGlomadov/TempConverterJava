@@ -9,8 +9,8 @@ public class Main {
         ClassPathXmlApplicationContext context=new ClassPathXmlApplicationContext("applicationContext.xml");
         Scanner in = new Scanner(System.in);
         int temp = in.nextInt();
-        Converter icon=context.getBean("creator", Converter.class);
-        System.out.println(icon.convert(temp));
+        Converter converter=context.getBean("creator", Converter.class);
+        System.out.println(converter.convert(temp));
         context.close();
     }
 

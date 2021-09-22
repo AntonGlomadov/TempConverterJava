@@ -8,9 +8,10 @@
     <bean id="factory" class="TempConverterModule.ConvertorFactory"/>
     <bean id="locale" class="TempConverterModule.Locale"/>
     <bean id="creator"
-          class="TempConverterModule.ConvertorFactory"
+          class="TempConverterModule.Converter"
           factory-bean="factory"
-          factory-method="create">
+          factory-method="create"
+    >
         <constructor-arg ref="locale"/>
     </bean>
 
