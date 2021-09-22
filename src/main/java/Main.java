@@ -1,45 +1,17 @@
-import TempConverterModule.*;
+import TempConverterModule.Converter;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import java.util.Locale;
+import java.util.Scanner;
+
 
 public class Main {
-    private static ConverterBuilder builder;
     public static void main(String[] args) throws Exception {
-        try {
-            configure();
-            doConversetion(15);
-        }
-        catch (Exception e){
-            System.out.println(e.getMessage());
-        }
+        ClassPathXmlApplicationContext context=new ClassPathXmlApplicationContext("applicationContext.xml");
+        Scanner in = new Scanner(System.in);
+        int temp = in.nextInt();
+        Converter icon=context.getBean("creator", Converter.class);
+        System.out.println(icon.convert(temp));
+        context.close();
     }
-
-    /**
-     * Создает определенную фабрику в зависимости от локали системы
-     * Если локаль не поддерживается выкидывает ошибку
-     * @throws Exception
-     */
-    static void configure() throws Exception {
-        String country = Locale.getDefault().getCountry();
-        System.out.println(country);
-        switch (country){
-            case "US":
-                builder = new FahrenheiConverterBuilder();
-                break;
-            case "RU":
-                builder = new KelvinConverterBuilder();
-                break;
-            default: throw new Exception("No supported local");
-        }
-    }
-
-    /**
-     * Функция выводящая итоговую температуру
-     * @param celsium
-     */
-    static void doConversetion(double celsium){
-       System.out.println(builder.doConversation(celsium));
-    }
-
 
 }
