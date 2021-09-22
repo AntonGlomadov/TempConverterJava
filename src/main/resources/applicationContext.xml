@@ -7,7 +7,7 @@
        http://www.springframework.org/schema/context/spring-context-3.2.xsd">
     <bean id="factory" class="TempConverterModule.ConvertorFactory"/>
     <bean id="locale" class="TempConverterModule.Locale"/>
-    <bean id="creator"
+    <bean id="convertor"
           class="TempConverterModule.Converter"
           factory-bean="factory"
           factory-method="create"
